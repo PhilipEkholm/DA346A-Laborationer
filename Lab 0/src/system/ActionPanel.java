@@ -18,7 +18,7 @@ class ActionPanel extends JPanel {
 	private Controller controller;
 	private JComboBox<String> action;
 	private JButton btnStart = new JButton("Starta");
-	
+
 	public ActionPanel(Controller controller) {
 		this.controller = controller;
 		action = new JComboBox<String>();
@@ -29,19 +29,19 @@ class ActionPanel extends JPanel {
 		add(btnStart, BorderLayout.SOUTH);
 		btnStart.addActionListener(new BtnListener());
 	}
-	
+
 	public void addActionTitle(String actionTitle) {
 		action.addItem(actionTitle);
 	}
-	
+
 	public void setEnableStartButton(boolean enabled) {
 		btnStart.setEnabled(enabled);
 	}
-	
+
 	private class BtnListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			controller.start(action.getSelectedIndex());
-		}		
+		}
 	}
 
 	public static void main(String[] args) {

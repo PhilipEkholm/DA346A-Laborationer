@@ -5,7 +5,7 @@ import java.util.Random;
 import system.Action;
 import system.Controller;
 
-public class RandomLeds implements Action{
+public final class RandomLeds implements Action{
 
 	@Override
 	public String getActionTitle() {
@@ -17,14 +17,14 @@ public class RandomLeds implements Action{
 		Random rand = new Random();
 		final int possibleValues = 256;
 		int state;
-		
+
 		for (int i = 0; i < 5; ++i) {
 			state = rand.nextInt(possibleValues);
 			controller.setLeds(state);
-			
+
 			/* Pause for 1s */
 			Controller.pause(1000);
 		}
 	}
-	
+
 }

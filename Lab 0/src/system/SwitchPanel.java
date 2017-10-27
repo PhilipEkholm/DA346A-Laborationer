@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 class SwitchPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Switch[] controls;
-	
+
 	public SwitchPanel(int numberOfControls) {
 		setLayout(new GridLayout(1,numberOfControls));
 		controls = new Switch[numberOfControls];
@@ -17,7 +17,7 @@ class SwitchPanel extends JPanel {
 			add(controls[i]);
 		}
 	}
-	
+
 	public boolean[] getSwitchState() {
 		boolean[] res = new boolean[controls.length];
 

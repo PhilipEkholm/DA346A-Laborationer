@@ -12,11 +12,11 @@ class Switch extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel title;
 	private JCheckBox onOff;
-	
+
 	public Switch(int ledNbr) {
 		this(ledNbr,false);
 	}
-	
+
 	public Switch(int ledNbr, boolean selected) {
 		setLayout(new GridLayout(2,1));
 		setPreferredSize(new Dimension(60,60));
@@ -27,7 +27,7 @@ class Switch extends JPanel {
 		add(title);
 		add(onOff);
 	}
-	
+
 	public boolean isSelected() {
 		return onOff.isSelected();
 	}

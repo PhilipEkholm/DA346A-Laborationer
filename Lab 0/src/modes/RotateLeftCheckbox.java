@@ -23,20 +23,20 @@ public class RotateLeftCheckbox implements Action{
 		int state = 0;
 		final int DELAY_MS = 500;
 		int carry = 0;
-		
+
 		controller.setLeds(M_DATA);
 		Controller.pause(DELAY_MS);
-		
+
 		for (int round = 0; round < M_NBR_ROUNDS; ++round) {
 			for (int i = 1; i <= Main.NBR_OF_BITS; ++i) {
 				state = M_DATA << i;
 				carry = state >> Main.NBR_OF_BITS;
-				
+
 				state += carry;
 				state = state & controller.getSwitchState();
 
 				controller.setLeds(state);
-					
+
 				Controller.pause(DELAY_MS);
 			}
 		}

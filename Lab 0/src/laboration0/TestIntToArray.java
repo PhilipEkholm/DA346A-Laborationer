@@ -7,7 +7,7 @@ import system.Controller;
 
 public class TestIntToArray {
 	public static final int NBR_OF_BITS = 8;
-	
+
 	public static void main(String[] args) {
 		BitConverter converter = new BitHandler();
 		Controller controller = new Controller(NBR_OF_BITS,

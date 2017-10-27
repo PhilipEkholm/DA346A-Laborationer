@@ -9,21 +9,21 @@ class Led extends JComponent {
 	private static final long serialVersionUID = 1L;
 	private boolean ledState;
 	private int radius;
-	
+
 	public Led() {
 		this(false);
 	}
-	
+
 	public Led(boolean state) {
 		this(state,20);
 	}
-	
+
 	public Led(boolean state, int radius) {
 		this.ledState = state;
 		this.radius = radius;
 		setOpaque(false);
 	}
-	
+
 	public void setState(boolean state) {
 		this.ledState = state;
 		repaint();
