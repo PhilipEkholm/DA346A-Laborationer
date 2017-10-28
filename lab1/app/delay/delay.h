@@ -9,8 +9,7 @@
  * Date:	2014-11-29
  */
 
-#ifndef DELAY_H_
-#define DELAY_H_
+#pragma once
 
 #include <inttypes.h>
 
@@ -20,5 +19,3 @@ void delay_1_micros(void);
 void delay_micros(uint8_t);
 void delay_ms(uint8_t);
 void delay_s(uint8_t);
-
-#endif /* DELAY_H_ */

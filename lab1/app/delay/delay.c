@@ -9,8 +9,6 @@
 
 #include "delay.h"
 
-#include <util/delay.h>
-
 #define QUARTER_1000 250
 
 void delay_1_micros() {

@@ -24,8 +24,10 @@ int main(void)
 
 	while(1) {
 		PORTB = 0x00;
-		delay_ms(100);
+		delay_ms(250);
+		delay_ms(250);
 		PORTB = 0xFF;
-		delay_ms(100);
+		delay_ms(250);
+		delay_ms(250);
 	}
 }
