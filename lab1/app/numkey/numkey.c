@@ -86,7 +86,7 @@ char numkey_read(void)
 	} else if (PINE & 0x20) {	// Row 3?
 		return key_map[3];
 	}
-	
+
 	CLR_BIT(PORTG, 5);			// Clear column 0
 	SET_BIT(PORTE, 3);			// Set column 1
 	CLR_BIT(PORTH, 3);			// Clear column 2
@@ -101,11 +101,53 @@ char numkey_read(void)
 	} else if (PINE & 0x20) {	// Row 3?
 		return key_map[7];
 	}
-	
-	// skriv kod här
-	
-	
-	
+
+	CLR_BIT(PORTG, 5);			// Clear column 0
+	CLR_BIT(PORTE, 3);			// Clear column 1
+	SET_BIT(PORTH, 3);			// Set column 2
+	CLR_BIT(PORTH, 4);			// Clear column 3
+	delay_ms(1);
+
+	if (PINF & 0x20)
+		return key_map[8];
+	else if (PINF & 0x10)
+		return key_map[9];
+	else if (PINE & 0x10)
+		return key_map[10];
+	else if (PINE & 0x20)
+		return key_map[11];
+
+	CLR_BIT(PORTG, 5);			// Clear column 0
+	CLR_BIT(PORTE, 3);			// Clear column 1
+	CLR_BIT(PORTH, 3);			// Clear column 2
+	SET_BIT(PORTH, 4);			// Set column 3
+	delay_ms(1);
+
+	if (PINF & 0x20)
+		return key_map[12];
+	else if (PINF & 0x10)
+		return key_map[13];
+	else if (PINE & 0x10)
+		return key_map[14];
+	else if (PINE & 0x20)
+		return key_map[15];
+
 	// no key was pressed!
 	return NO_KEY;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

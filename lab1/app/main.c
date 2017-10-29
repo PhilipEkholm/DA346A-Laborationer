@@ -1,6 +1,9 @@
 /*
  *	Drivers for keyboard and LCD-screen
  *
+ * 	Will print out a key selected on the keyboard and print it to the LCD.
+ * 	Use # for clearing screen
+ *
  * 	Created: 2016-11-01 14:42:40
  *  Author: Philip Ekholm
  */
@@ -21,8 +24,24 @@ int main(void)
 	lcd_clear();
 
 	lcd_write_str("HELLO LEO");
+	char last_key;
+	char key;
 
 	while(1) {
+		key = numkey_read();
 
+		if (key != NO_KEY && key != last_key){
+			if(key == '#')
+				lcd_clear();
+			else
+				lcd_write(CHR, key);
+		}
+
+		last_key = key;
 	}
 }
+
+
+
+
+
