@@ -14,10 +14,9 @@
  *
  * Created by Mathias Beckius, 26 June 2015, for the course DA346A at
  * Malmo University.
- */ 
+ */
 
-#ifndef LCD_H_
-#define LCD_H_
+#pragma once
 
 #include <inttypes.h>
 
@@ -35,5 +34,3 @@ void lcd_write(enum lcd_register, uint8_t);
 void lcd_write_str(char *);
 void lcd_clear(void);
 void lcd_set_cursor_pos(uint8_t, uint8_t);
-
-#endif /* LCD_H_ */

@@ -20,14 +20,9 @@ int main(void)
 	lcd_init();
 	lcd_clear();
 
-	DDRB = 0xFF;
+	lcd_write_str("HELLO LEO");
 
 	while(1) {
-		PORTB = 0x00;
-		delay_ms(250);
-		delay_ms(250);
-		PORTB = 0xFF;
-		delay_ms(250);
-		delay_ms(250);
+
 	}
 }

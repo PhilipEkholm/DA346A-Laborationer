@@ -64,7 +64,7 @@ void lcd_init(void)
 	SET_BIT(DDRB, 4);		// Data/command pin (output)
 	SET_BIT(DDRB, 5);		// Reset pin (output)
 	SET_BIT(DDRB, 6);		// CS/SS pin (output)
-	
+
 	// Initialize LCD
 	delay_ms(20);			// Let Vcc stabilize after power-up!
 	SET_BIT(PORTB, 5);		// Set Reset pin HIGH
@@ -83,7 +83,12 @@ void lcd_init(void)
  */
 void lcd_clear(void)
 {
-	// lägg till kod här
+	for (uint8_t row = 0; row < 6; ++row){
+		for (uint8_t col = 0; col < 14; ++col) {
+			lcd_set_cursor_pos(row, col);
+			lcd_write(CHR, 0x20);
+		}
+	}
 }
 
 /*
@@ -112,7 +117,7 @@ void lcd_write(enum lcd_register lcd_reg, uint8_t data)
 {
 	uint8_t character;
 	uint8_t i;
-	
+
 	if (lcd_reg == CMD) {
 		// Prepare to send a command
 		CLR_BIT(PORTB, 4);
@@ -139,5 +144,21 @@ void lcd_write(enum lcd_register lcd_reg, uint8_t data)
  */
 void lcd_write_str(char *p_str)
 {
-// Skriv kod här
+	uint8_t pos = 0;
+	lcd_set_cursor_pos(0, 0);
+
+	while (*(p_str) != '\0'){
+		lcd_write(CHR, *p_str);
+		lcd_set_cursor_pos(0, ++pos);
+
+		p_str++;
+	}
 }
+
+
+
+
+
+
+
+
