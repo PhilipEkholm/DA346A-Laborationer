@@ -3,7 +3,7 @@
  *
  * This is the device driver for the manual motor speed regulator.
  *
- * Author:	Mathias Beckius
+ * Author:	Mathias Beckius, Philip Ekholm
  * Date:	2014-12-08
  *
  * Modified by Mathias Beckius, 26 June 2015, for the course DA346A at
@@ -16,7 +16,7 @@
 #include "../common.h"
 
 // for storage of ADC value from temperature sensor
-			// UPPGIFT: Deklarera en 8-bitars variabel som lagrar värdet
+static volatile uint8_t adc = 0;
 
 /*
  * Interrupt Service Routine for the ADC.
@@ -24,29 +24,29 @@
  */
 ISR(ADC_vect)
 {
-	// read ADC value
-
+	adc = ADCH;
 }
 
 /*
  * Initialize the ADC and ISR.
  * ADC Resolution is 8-bit.
  */
+
 void regulator_init(void)
 {
 	// init A/D conversion
-	ADMUX	|= 0;				// set reference voltage (internal 5V)
-	ADMUX	|= 0;				// select Single Ended Input for ADC15
-	ADCSRB	|= 0;				// ADC15 needs selection in a second place
-	ADMUX	|= 0;				// left adjustment of ADC value
+	ADMUX	|= (1 << REFS0);	// set reference voltage (internal 5V)
+	ADMUX	|= 0x03;			// select Single Ended Input for ADC15
+	ADCSRB	|= (1 << MUX5);		// ADC15 needs selection in a second place
+	ADMUX	|= (1 << ADLAR);	// left adjustment of ADC value
 
-	ADCSRA |= 0;				// prescaler 128
-	ADCSRA |= 0;				// enable Auto Trigger
-	ADCSRA |= 0;				// enable Interrupt
-	ADCSRA |= 0;				// enable ADC
+	ADCSRA |= 0x03;				// prescaler 128
+	ADCSRA |= (1 << ADATE);		// enable Auto Trigger
+	ADCSRA |= (1 << ADIE);		// enable Interrupt
+	ADCSRA |= (1 << ADEN);		// enable ADC
 
 	// disable digital input on ADC15
-	DIDR2 = 0;
+	DIDR2 = (1 << ADC15D);
 
 	// disable USB controller (to make interrupts possible)
 	//USBCON = 0;
@@ -54,7 +54,7 @@ void regulator_init(void)
 	sei();
 
 	// start conversion
-	ADCSRA |= 0;
+	ADCSRA |= (1 << ADSC);
 }
 
 /*
@@ -66,9 +66,7 @@ void regulator_init(void)
 
 uint8_t regulator_read(void)
 {
-	uint8_t percentage;
-	//add code here to read out current setting
-	return percentage;
+	return adc;
 }
 
 

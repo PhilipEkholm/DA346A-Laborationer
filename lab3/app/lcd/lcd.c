@@ -24,6 +24,8 @@
 
 static void write_byte(uint8_t);
 
+static uint8_t lcd_cursor_row;
+
 /*
  * Write a byte of data to the LCD, starting with the most significant bit.
  */
@@ -104,6 +106,8 @@ void lcd_set_cursor_pos(uint8_t row, uint8_t col)
 	lcd_write(CMD, row);
 	col = 0x80 | (col * CHR_TOTAL_WIDTH);	// set column
 	lcd_write(CMD, col);
+
+	lcd_cursor_row = row;
 }
 
 /*
@@ -145,17 +149,14 @@ void lcd_write(enum lcd_register lcd_reg, uint8_t data)
 void lcd_write_str(char *p_str)
 {
 	uint8_t pos = 0;
-	lcd_set_cursor_pos(0, 0);
 
 	while (*(p_str) != '\0'){
 		lcd_write(CHR, *p_str);
-		lcd_set_cursor_pos(0, ++pos);
+		lcd_set_cursor_pos(lcd_cursor_row, ++pos);
 
 		p_str++;
 	}
 }
-
-
 
 
 
