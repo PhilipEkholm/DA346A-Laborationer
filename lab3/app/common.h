@@ -31,3 +31,21 @@
  */
 #define SET_BIT_LEVELS(reg, bit_mask, bit_data) \
 	(reg) = (((reg) & (bit_mask)) | ((bit_data) & ~(bit_mask)))
+
+enum state {
+	MOTOR_OFF = 1,
+	MOTOR_ON_FORWARD,
+	MOTOR_RUNNING_FORWARD,
+	MOTOR_ON_BACKWARD,
+	MOTOR_RUNNING_BACKWARD,
+	NBR_OF_STATES,
+};
+
+
+
+
+
+
+
+
+

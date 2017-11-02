@@ -146,13 +146,14 @@ uint8_t input_int(char *p_msg, uint16_t *p_int_nr)
 
 void output_msg(char *p_str1, char *p_str2, uint8_t delay_after_msg)
 {
-	//lcd_set_cursor_mode(CURSOR_OFF);												finns?
 	lcd_clear();
 	lcd_set_cursor_pos(0, 0);
 	lcd_write_str(p_str1);
 	lcd_set_cursor_pos(1, 0);
 	lcd_write_str(p_str2);
-	delay_s(delay_after_msg);
+
+	if (delay_after_msg > 0)
+		delay_s(delay_after_msg);
 }
 
 
