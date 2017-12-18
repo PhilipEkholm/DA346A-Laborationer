@@ -3,7 +3,7 @@
  *
  * This file contains a driver for communicating with a Philips PCD8544
  * LCD controller (48x84 pixels), 6 rows and 14 columns with 8x6 pixel
- * characters. This is the same display that was mounted in a 
+ * characters. This is the same display that was mounted in a
  * Nokia 5110 cell phone.
  * This driver is written for a LCD mounted on a "iBridge keypad shield",
  * which is mounted on a Arduino Mega board (ATmega2560).

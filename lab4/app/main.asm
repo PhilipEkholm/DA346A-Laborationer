@@ -14,7 +14,7 @@
  * Created by Mathias Beckius, 25 June 2015, for the course DA346A at
  * Malmo University.
  */
- 
+
 ;==============================================================================
 ; Definitions of registers, etc. ("constants")
 ;==============================================================================
@@ -127,7 +127,7 @@ init_pins_led:
 ;	R20				temporary storage of pressed key
 ;	R24				input / output values
 ;==============================================================================
-MYDATA: .DB "PRESS KEY",0
+MYDATA: .DB "HELLO LEO", 0
 
 main:
 	rcall lcd_clear
@@ -144,6 +144,10 @@ loop:
 	breq loop
 
 	rcall convert_to_ASCII
+
+	cpi r24, '#'
+	breq clear_screen
+
 	mov r20, r24
 	LCD_WRITE_CHR
 
@@ -154,9 +158,13 @@ same_key_pressed:
 	breq same_key_pressed
 
 	rjmp loop
-	
+
+clear_screen:
+	rcall lcd_clear
+
+	rjmp same_key_pressed
 
 
- 
+
 
 

@@ -37,7 +37,7 @@ keys:
 ; pressed, then NO_KEY is returned.
 ;
 ; Uses registers:
-;	R19			Counter to use as pointer 
+;	R19			Counter to use as pointer
 ;   R24			Register when returning key
 ;
 ; Important! A minimum delay of 2 NOP's is necessary after setting port,
